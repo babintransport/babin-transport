@@ -2,7 +2,7 @@
 // Cheia "anon public" este sigură în browser DOAR cu RLS activat pe tabele.
 // NU pune NICIODATĂ aici cheia "service_role".
 window.APP_CONFIG = {
-  SUPABASE_URL: "https://XXXX.supabase.co",
-  SUPABASE_ANON_KEY: "XXXX",
+  SUPABASE_URL: "https://dnssgxofqllvlincsnos.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_UDCryoSPaqnnVTHMeko2TA_i-rRjdkn",
   REQUIRE_2FA: false   // true = cere și codul din e-mail; false = doar e-mail + parolă
 };
