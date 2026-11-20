@@ -4,4 +4,5 @@
 window.APP_CONFIG = {
   SUPABASE_URL: "https://dnssgxofqllvlincsnos.supabase.co",
   SUPABASE_ANON_KEY: "sb_publishable_UDCryoSPaqnnVTHNeko2TA_1-rRjdkn..."
+  REQUIRE_2FA: false   // true = cere și codul din e-mail; false = doar e-mail + parolă
 };
