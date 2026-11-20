@@ -152,7 +152,7 @@
 
 <script>
 (() => {
-  const { SUPABASE_URL, SUPABASE_ANON_KEY } = window.APP_CONFIG || {};
+  const { SUPABASE_URL, SUPABASE_ANON_KEY, REQUIRE_2FA } = window.APP_CONFIG || {};
   const $ = (id) => document.getElementById(id);
 
   if (!SUPABASE_URL || SUPABASE_URL.includes('XXXX') || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes('XXXX')) {
@@ -230,10 +230,16 @@
     setBusy($('loginBtn'), true, 'Continuă');
 
     // 1) verificăm parola
-    const { error: pwError } = await sb.auth.signInWithPassword({ email, password });
+    const { data: pwData, error: pwError } = await sb.auth.signInWithPassword({ email, password });
     if (pwError) {
       setBusy($('loginBtn'), false, 'Continuă');
       return setError($('loginError'), friendlyError(pwError));
+    }
+
+    // Fără 2FA: intrăm direct după parolă
+    if (!REQUIRE_2FA) {
+      setBusy($('loginBtn'), false, 'Continuă');
+      return enterApp(pwData.user);
     }
 
     // 2) renunțăm la sesiunea obținută doar cu parola (scope local = nu deconectează alte dispozitive)
